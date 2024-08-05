@@ -1,0 +1,234 @@
+# Classe Aluno
+class Aluno:
+    def __init__(self, nome, sobrenome, turma):
+        self.nome = nome
+        self.sobrenome = sobrenome
+        self.turma = turma
+        self.codigo = None
+        self.notas = []
+        self.media = None
+
+# Classe Turma
+class Turma:
+    def __init__(self, nome):
+        self.nome = nome
+        self.codigo = None
+        self.alunos = []
+
+# Dicionários para armazenar dados
+usuarios = {'Paulo': '1234', 'Fernanda': '4567'}  # usuários e senhas
+alunos_dict = {}  # armazenar códigos e alunos (nomes)
+codigos_notas = {}  # armazenar códigos e notas
+turmas_dict = {}  # armazenar turmas e códigos
+
+# Função para gerar código para aluno e turma
+def gerar_codigo(tipo, count):
+    if tipo == 'aluno':
+        return f'a{count:02d}'
+    elif tipo == 'turma':
+        return f't{count:02d}'
+
+# Função para realizar cadastro
+def realizar_cadastro():
+    opcao = input("Você já possui cadastro? (S/N): ").upper()
+
+    if opcao == "S":
+        fazer_login()
+    elif opcao == "N":
+        novo_usuario = input("Digite o nome de usuário desejado: ")
+        if novo_usuario in usuarios:
+            print("Nome de usuário já existe. Tente novamente.")
+        else:
+            nova_senha = input("Digite a senha desejada: ")
+            usuarios[novo_usuario] = nova_senha
+            print("Cadastro realizado com sucesso!")
+    else:
+        print("Opção inválida.")
+
+# Função para fazer login
+def fazer_login():
+    usuario = input("Digite o nome de usuário: ")
+    senha = input("Digite a senha: ")
+
+    if usuario in usuarios and usuarios[usuario] == senha:
+        print("Login realizado com sucesso!")
+        menu_principal()
+    else:
+        print("Usuário ou senha incorretos.")
+
+# Função para realizar cadastro de aluno
+def realizar_cadastro_aluno():
+    nome = input("Digite o nome do aluno: ")
+    sobrenome = input("Digite o sobrenome do aluno: ")
+    turma = input("Digite a turma do aluno: ")
+
+    aluno = Aluno(nome, sobrenome, turma)
+
+    count_alunos = len(alunos_dict) + 1
+    aluno.codigo = gerar_codigo('aluno', count_alunos)
+
+    alunos_dict[aluno.codigo] = aluno
+
+    print(f"Cadastro do aluno {aluno.nome} realizado com sucesso!")
+    print(f"Código do aluno: {aluno.codigo}")
+    print(f"Turma do aluno: {aluno.turma}")
+
+# Função para cadastrar uma turma
+def cadastrar_turma():
+    nome_turma = input("Digite o nome da turma: ")
+
+    turma = Turma(nome_turma)
+
+    count_turmas = len(turmas_dict) + 1
+    turma.codigo = gerar_codigo('turma', count_turmas)
+
+    turmas_dict[turma.codigo] = turma
+
+    print(f"Turma {turma.nome} cadastrada com sucesso!")
+    print(f"Código da turma: {turma.codigo}")
+
+# Função para inserir notas de um aluno
+def inserir_notas():
+    codigo_aluno = input("Digite o código do aluno: ")
+
+    if codigo_aluno in alunos_dict:
+        aluno = alunos_dict[codigo_aluno]
+
+        nota1 = float(input("Digite a primeira nota: "))
+        nota2 = float(input("Digite a segunda nota: "))
+
+        aluno.notas = [nota1, nota2]
+        aluno.media = sum(aluno.notas) / len(aluno.notas)
+
+        codigos_notas[codigo_aluno] = aluno.notas
+
+        print(f"Notas do aluno {aluno.nome} registradas com sucesso!")
+    else:
+        print("Código de aluno inválido.")
+
+# Função para exibir informações de um aluno
+def exibir_info_aluno():
+    codigo_aluno = input("Digite o código do aluno: ")
+
+    if codigo_aluno in alunos_dict:
+        aluno = alunos_dict[codigo_aluno]
+        print(f"Nome: {aluno.nome} {aluno.sobrenome}")
+        print(f"Código: {aluno.codigo}")
+        print(f"Turma: {aluno.turma}")
+        print(f"Notas: {aluno.notas}")
+        print(f"Média: {aluno.media}")
+    else:
+        print("Código de aluno inválido.")
+
+# Função para exibir informações de uma turma
+def exibir_info_turma():
+    codigo_turma = input("Digite o código da turma: ")
+
+    if codigo_turma in turmas_dict:
+        turma = turmas_dict[codigo_turma]
+        print(f"Nome da turma: {turma.nome}")
+        print(f"Código da turma: {turma.codigo}")
+        print("Alunos:")
+        for aluno_codigo in alunos_dict:
+            aluno = alunos_dict[aluno_codigo]
+            if aluno.turma == turma.nome:
+                print(f" - {aluno.nome} {aluno.sobrenome} (Código: {aluno.codigo}) - Média: {aluno.media}")
+    else:
+        print("Código de turma inválido.")
+
+# Função para exibir todas as turmas cadastradas
+def exibir_todas_turmas():
+    if len(turmas_dict) > 0:
+        print("Turmas cadastradas:")
+        for codigo in turmas_dict:
+            turma = turmas_dict[codigo]
+            count_alunos = sum(1 for aluno in alunos_dict.values() if aluno.turma == turma.nome)
+            print(f" - {turma.nome} (Código: {turma.codigo}) - Alunos matriculados: {count_alunos}")
+    else:
+        print("Nenhuma turma cadastrada.")
+
+# Função para exibir todos os alunos cadastrados
+def exibir_todos_alunos():
+    if len(alunos_dict) > 0:
+        print("Alunos cadastrados:")
+        for codigo in alunos_dict:
+            aluno = alunos_dict[codigo]
+            print(f" - {aluno.nome} {aluno.sobrenome} (Código: {aluno.codigo}) - Turma: {aluno.turma}")
+    else:
+        print("Nenhum aluno cadastrado.")
+
+# ADICIONANDO NOVAS TURMAS ao INICIAR o SISTEMA
+turma_a = Turma("Turma A")
+turma_a.codigo = gerar_codigo('turma', 1)
+turmas_dict[turma_a.codigo] = turma_a
+
+turma_b = Turma("Turma B")
+turma_b.codigo = gerar_codigo('turma', 2)
+turmas_dict[turma_b.codigo] = turma_b
+
+# ADICIONANDO NOVOS ALUNOS ao INICIAR o SISTEMA
+aluno1 = Aluno("João", "Silva", "Turma A")
+aluno1.codigo = gerar_codigo('aluno', 1)
+aluno1.notas = [8.5, 7.0]
+aluno1.media = sum(aluno1.notas) / len(aluno1.notas)
+alunos_dict[aluno1.codigo] = aluno1
+turma_a.alunos.append(aluno1)
+
+aluno2 = Aluno("Maria", "Santos", "Turma A")
+aluno2.codigo = gerar_codigo('aluno', 2)
+aluno2.notas = [6.0, 9.0]
+aluno2.media = sum(aluno2.notas) / len(aluno2.notas)
+alunos_dict[aluno2.codigo] = aluno2
+turma_a.alunos.append(aluno2)
+
+aluno3 = Aluno("Pedro", "Oliveira", "Turma B")
+aluno3.codigo = gerar_codigo('aluno', 3)
+aluno3.notas = [7.5, 8.0]
+aluno3.media = sum(aluno3.notas) / len(aluno3.notas)
+alunos_dict[aluno3.codigo] = aluno3
+turma_b.alunos.append(aluno3)
+
+aluno4 = Aluno("Ana", "Ferreira", "Turma B")
+aluno4.codigo = gerar_codigo('aluno', 4)
+aluno4.notas = [9.0, 9.5]
+aluno4.media = sum(aluno4.notas) / len(aluno4.notas)
+alunos_dict[aluno4.codigo] = aluno4
+turma_b.alunos.append(aluno4)
+
+# Função principal do menu
+def menu_principal():
+    while True:
+        print("\n===== Menu Principal =====")
+        print("1. Cadastrar um aluno")
+        print("2. Cadastrar uma turma")
+        print("3. Inserir as notas de um aluno")
+        print("4. Exibir informações de um aluno")
+        print("5. Exibir informações de uma turma")
+        print("6. Exibir todas as turmas cadastradas")
+        print("7. Exibir todos os alunos cadastrados")
+        print("8. Sair do sistema")
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            realizar_cadastro_aluno()
+        elif opcao == "2":
+            cadastrar_turma()
+        elif opcao == "3":
+            inserir_notas()
+        elif opcao == "4":
+            exibir_info_aluno()
+        elif opcao == "5":
+            exibir_info_turma()
+        elif opcao == "6":
+            exibir_todas_turmas()
+        elif opcao == "7":
+            exibir_todos_alunos()
+        elif opcao == "8":
+            print("Obrigado por utilizar o iLuno!")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+# Executar o menu do sistema
+print('Bem-vin@ ao iLunos!')
+realizar_cadastro()
