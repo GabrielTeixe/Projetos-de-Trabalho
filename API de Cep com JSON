@@ -1,0 +1,69 @@
+from fastapi import FastAPI
+import requests
+from datetime import datetime
+import json
+import os
+
+app = FastAPI()
+
+
+
+# Função para salvar logs em JSON
+
+def salvar_log_json(cep, resposta):
+    log_entry = {
+        "data_hora": str(datetime.now()),
+        "cep": cep,
+        "resultado": resposta
+    }
+
+    # Se o arquivo já existir, carregamos
+    
+    if os.path.exists("logs.json"):
+        with open("logs.json", "r", encoding="utf-8") as file:
+            try:
+                logs = json.load(file)
+            except json.JSONDecodeError:
+                logs = []
+    else:
+        logs = []
+
+    # Adiciona novo log
+    logs.append(log_entry)
+
+    # Salva tudo novamente
+    with open("logs.json", "w", encoding="utf-8") as file:
+        json.dump(logs, file, indent=4, ensure_ascii=False)
+
+
+@app.get("/")
+def inicio():
+    return {"mensagem": "API de consulta de CEP"}
+
+
+@app.get("/cep/{cep}")
+def consultar_cep(cep: str):
+
+    url = f"https://viacep.com.br/ws/{cep}/json/"
+
+    resposta = requests.get(url)
+
+    if resposta.status_code != 200:
+        salvar_log_json(cep, "Erro na API externa")
+        return {"erro": "Falha ao consultar API externa"}
+
+    dados = resposta.json()
+
+    if "erro" in dados:
+        salvar_log_json(cep, "CEP inexistente")
+        return {"erro": "CEP não encontrado"}
+
+    salvar_log_json(cep, "Consulta realizada com sucesso")
+
+    return {
+        "cep": dados.get("cep"),
+        "logradouro": dados.get("logradouro"),
+        "bairro": dados.get("bairro"),
+        "cidade": dados.get("localidade"),
+        "estado": dados.get("uf")
+    }
