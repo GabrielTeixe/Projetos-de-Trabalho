@@ -1,1 +1,2 @@
-Todas as Capturas de tela presentes no meu repositorio são imagens dos sites ja desenvolvidos por mim utilizando as plataformas wix e wordpress porem tambem consigo realizan a criação de sites e portifolios via back end utilizando python.
+Desenvolvedor Full-Stack Júnior | Python • Java (Spring Boot) • C# (.NET) • WordPress
+Atuar no desenvolvimento de sistemas e aplicações web, contribuindo com soluções eficientes, organização e capacidade de aprendizado contínuo.
