@@ -1,0 +1,61 @@
+Criptografia RSA em Python
+
+Este projeto demonstra a criptografia assimétrica usando o algoritmo RSA em Python. O usuário pode digitar um texto, criptografá-lo usando uma chave pública e depois descriptografá-lo com a chave privada.
+
+Funcionalidades
+
+Geração de chave pública e chave privada.
+
+Criptografia de mensagens usando a chave pública.
+
+Descriptografia usando a chave privada.
+
+Exibição do tamanho da mensagem, das chaves e do texto criptografado.
+
+Conceitos aplicados
+
+Criptografia assimétrica: utiliza duas chaves diferentes — pública para criptografar e privada para descriptografar.
+
+RSA (Rivest–Shamir–Adleman): um dos algoritmos de criptografia mais conhecidos e utilizados.
+
+Biblioteca rsa em Python: simplifica a criação de chaves e o processo de criptografia/descriptografia.
+
+Como usar
+
+Certifique-se de ter Python instalado (versão 3.x).
+
+Instale a biblioteca rsa caso não tenha:
+
+pip install rsa
+
+
+Execute o script:
+
+python rsa_criptografia.py
+
+
+Digite o texto que deseja criptografar. O programa exibirá:
+
+Texto original e tamanho
+
+Chave pública e tamanho
+
+Chave privada e tamanho
+
+Texto criptografado e tamanho
+
+Texto descriptografado
+
+Observações
+
+O tamanho da chave (512 bits) é apenas para demonstração. Em produção, recomenda-se chaves maiores (2048 bits ou mais).
+
+Este projeto é ideal para aprendizado de conceitos de criptografia e para exibir no portfólio de Python.
+
+Pode ser expandido para:
+
+Salvar mensagens criptografadas em arquivos.
+
+Criar interface gráfica ou linha de comando interativa.
+
+Enviar mensagens seguras entre usuários.
