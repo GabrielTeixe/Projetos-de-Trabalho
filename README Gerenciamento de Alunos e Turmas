@@ -1,0 +1,108 @@
+iLuno – Sistema de Gerenciamento de Alunos e Turmas
+
+iLuno é um sistema em Python que permite cadastrar alunos e turmas, inserir notas, calcular médias e consultar informações de forma prática e organizada. Ele utiliza programação orientada a objetos (POO) e armazenamento em memória via dicionários.
+
+Funcionalidades
+
+Cadastro de usuários e login
+
+Permite criar novos usuários e fazer login para acessar o sistema.
+
+Cadastro de alunos
+
+Armazena nome, sobrenome, turma, código único e notas do aluno.
+
+Cadastro de turmas
+
+Cada turma possui nome e código único, além de lista de alunos.
+
+Inserção de notas
+
+Permite registrar notas de dois exercícios ou avaliações.
+
+Calcula automaticamente a média do aluno.
+
+Consulta de informações
+
+Exibe informações de um aluno específico, incluindo notas e média.
+
+Exibe informações de uma turma, incluindo todos os alunos e suas médias.
+
+Listagem geral
+
+Lista todas as turmas cadastradas com quantidade de alunos.
+
+Lista todos os alunos cadastrados com suas turmas.
+
+Pré-população de dados
+
+Algumas turmas e alunos já são criados ao iniciar o sistema, facilitando testes imediatos.
+
+Como usar
+
+Certifique-se de ter Python 3.x instalado.
+
+Salve o arquivo do projeto (por exemplo, iluno.py).
+
+Execute o script:
+
+python iluno.py
+
+
+Siga as instruções do menu interativo:
+
+Realizar cadastro ou login.
+
+Acessar o Menu Principal para gerenciar alunos, turmas e notas.
+
+Estrutura do Projeto
+
+Classes
+
+Aluno: representa um aluno com nome, sobrenome, turma, código, notas e média.
+
+Turma: representa uma turma com nome, código e lista de alunos.
+
+Dicionários
+
+usuarios: armazena usuários e senhas.
+
+alunos_dict: armazena alunos cadastrados por código.
+
+turmas_dict: armazena turmas cadastradas por código.
+
+codigos_notas: armazena notas por código de aluno.
+
+Funções principais
+
+realizar_cadastro() e fazer_login(): controle de acesso.
+
+realizar_cadastro_aluno() e cadastrar_turma(): cadastro de alunos e turmas.
+
+inserir_notas(): registrar notas e calcular média.
+
+exibir_info_aluno(), exibir_info_turma(), exibir_todas_turmas(), exibir_todos_alunos(): consultas e relatórios.
+
+Observações e Melhorias Futuras
+
+Persistência de dados: atualmente os dados são temporários. Pode-se salvar em arquivos (JSON/CSV) ou banco de dados.
+
+Validações e tratamento de erros: evitar crashes ao inserir valores inválidos.
+
+Interface gráfica: adicionar GUI com tkinter ou PySimpleGUI.
+
+Organização do código: separar classes e funções em módulos distintos para melhor manutenção.
+
+Conclusão
+
+O iLuno é um projeto educacional completo, que demonstra habilidades em:
+
+Programação orientada a objetos (POO)
+
+Manipulação de listas e dicionários
+
+Lógica de negócios e cálculos (média de notas)
+
+Sistemas interativos e menus em terminal
+
+É uma ótima adição para portfólio de Python, mostrando tanto conhecimento técnico quanto organização de dados e interatividade.
