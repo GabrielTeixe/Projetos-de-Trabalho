@@ -1,0 +1,30 @@
+# API de Consulta de CEP
+
+API construída com **FastAPI** para consultar CEPs utilizando a API [ViaCEP](https://viacep.com.br/).  
+Inclui registro de logs em JSON de todas as consultas.
+
+## Funcionalidades
+- Consulta de CEP via endpoint `/cep/{cep}`
+- Retorno do log de consultas em arquivo `logs.json`
+- Mensagens de erro claras
+
+## Tecnologias
+- Python 3.x
+- FastAPI
+- Requests
+- JSON
+
+## Como rodar localmente
+1. Clone o repositório:
+```bash
+git clone https://github.com/GabrielTeixe/api-consulta-cep.git
+
+2 Instale as dependências 
+pip install fastapi requests uvicorn
+
+3 Execute a aplicação:
+uvicorn main:app --reload
+
+4 Acesse no navegador:
+http://127.0.0.1:8000/
+
