@@ -1,0 +1,72 @@
+Locadora de Carros 
+
+Projeto simples em Python que simula uma locadora de carros, permitindo que o usuário visualize o portfólio de carros disponíveis, alugue veículos e os devolva.
+
+Funcionalidades
+
+Exibir portfólio de carros disponíveis
+
+Mostra todos os carros disponíveis para aluguel com o valor por dia.
+
+Alugar um carro
+
+O usuário escolhe um carro pelo código da lista.
+
+Define a quantidade de dias que deseja alugar.
+
+Calcula o valor total do aluguel.
+
+Confirma o aluguel e move o carro da lista de disponíveis para a lista de alugados.
+
+Devolver um carro
+
+Exibe os carros que estão alugados.
+
+O usuário escolhe qual carro deseja devolver.
+
+Move o carro da lista de alugados de volta para a lista de disponíveis.
+
+Estrutura do Código
+
+carros → lista com os carros disponíveis e o valor por dia.
+
+alugados → lista de carros atualmente alugados.
+
+mostrar_lista_de_carros(lista) → função que exibe os carros de uma lista com índices e preços.
+
+Menu interativo com opções:
+
+0 → Mostrar portfólio.
+
+1 → Alugar carro.
+
+2 → Devolver carro.
+
+O menu funciona em loop contínuo até que o usuário escolha sair.
+
+Como usar
+
+Abra o terminal ou prompt de comando.
+
+Navegue até a pasta do projeto.
+
+Execute o script Python:
+
+python locadora.py
+
+
+Siga o menu interativo para visualizar carros, alugar e devolver.
+
+Observações
+
+O projeto utiliza os.system("cls") para limpar a tela no Windows. Para Linux/Mac, substitua por os.system("clear").
+
+O código usa listas para armazenar carros disponíveis e alugados.
+
+O programa ainda é básico, mas serve como base para futuros aprimoramentos, como:
+
+Armazenamento em arquivo ou banco de dados.
+
+Registro de cliente e histórico de aluguéis.
+
+Interface gráfica.
